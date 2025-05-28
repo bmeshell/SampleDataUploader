@@ -38,7 +38,7 @@ public class FhirInstanceUploader {
                                     .build();
 
                             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
+                            System.out.println(response.toString() + " " + file.getName());
                         }
                         catch (IOException e) {
                             System.out.println("Error reading file: " + file.getName());
@@ -51,6 +51,9 @@ public class FhirInstanceUploader {
                         catch (InterruptedException e) {
                             System.out.println("Interrupted exception: " + file.getName());
                             e.printStackTrace();
+                        }
+                        catch (Exception e) {
+                            System.out.println("Unspecified exception: " + file.getName());
                         }
                     }
                 }
