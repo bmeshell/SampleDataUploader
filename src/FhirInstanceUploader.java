@@ -13,7 +13,10 @@ import com.google.gson.JsonParser;
 public class FhirInstanceUploader {
 
     public void uploadAllJsonInFolder() {
+
         final String FhirServerBaseUrl = "https://gw.interop.community/bmeshelltest/open/";
+        HttpClient client = HttpClient.newHttpClient();
+
         File folder = new File("src/upload");
         if (folder.exists() && folder.isDirectory()) {
             File[] files = folder.listFiles();
@@ -34,11 +37,8 @@ public class FhirInstanceUploader {
                                     .PUT(HttpRequest.BodyPublishers.ofString(fileContent))
                                     .build();
 
-                            HttpClient client = HttpClient.newHttpClient();
-
                             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-                            System.out.println("hi");
                         }
                         catch (IOException e) {
                             System.out.println("Error reading file: " + file.getName());
