@@ -14,7 +14,7 @@ public class FhirInstanceUploader {
 
     public void uploadAllJsonInFolder() {
 
-        final String FhirServerBaseUrl = "https://gw.interop.community/bmeshelltest/open/";
+        final String FHIR_SERVER_BASE_URL = "https://gw.interop.community/bmeshelltest/open/";
         HttpClient client = HttpClient.newHttpClient();
 
         File folder = new File("src/upload");
@@ -29,7 +29,7 @@ public class FhirInstanceUploader {
 
                             String myResourceType = jsonObject.get("resourceType").toString();
                             String myId = jsonObject.get("id").toString();
-                            String myUri = FhirServerBaseUrl + myResourceType.substring(1, myResourceType.length() - 1) + "/" + myId.substring(1, myId.length() - 1);
+                            String myUri = FHIR_SERVER_BASE_URL + myResourceType.substring(1, myResourceType.length() - 1) + "/" + myId.substring(1, myId.length() - 1);
 
                             HttpRequest request = HttpRequest.newBuilder()
                                     .uri(new URI(myUri))
